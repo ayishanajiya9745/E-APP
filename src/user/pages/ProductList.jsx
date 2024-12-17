@@ -41,103 +41,75 @@
 //     );
 //   }
   
-// //   export default ProductList; import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// const ProductList = () => {
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     axios.get('http://localhost:5000/products')
-//       .then((response) => {
-//         setProducts(response.data);
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching products:', error);
-//       });
-//   }, []);
-
-//   return (
-//     <div className="container mx-auto p-4">
-//       <div className="grid grid-cols-5 gap-4">
-//         {products.slice(0, 10).map((product) => (
-//           <div
-//             key={product.id}
-//             className="bg-white p-2 rounded-lg shadow-md hover:shadow-lg transition duration-200 flex flex-col justify-between"
-//             style={{ height: '400px' }} // Fixed height for uniformity
-//           >
-//             {/* Reduced spacing around the image */}
-//             <img
-//               src={product.image}
-//               alt={product.name}
-//               className="w-48 h-48 object-contain rounded-md mx-auto mb-2" // Margin bottom reduced
-//             />
-
-//             {/* Reduced margin between product name and price */}
-//             <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
-//             <p className="text-gray-600 mb-1">${product.price}</p>
-
-//             {/* Reduced margin between product description and button */}
-//             <button
-//               className="mt-1 w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
-//             >
-//               Add to Cart
-//             </button>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProductList;
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
+//   export default ProductList; 
+ import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+function Home() {
+  const [smartphones, setSmartphones] = useState([]); // State to store fetched products
+  const [loading, setLoading] = useState(true); // State to show a loading spinner or text
+  const [error, setError] = useState(null); // State to handle errors
 
   useEffect(() => {
-    axios.get('http://localhost:5000/products')
-      .then((response) => {
-        setProducts(response.data);
+    // Fetch data from db.json via json-server
+    axios
+      .get("http://localhost:5000") // Endpoint served by json-server
+      .then((response) =>{
+        console.log(response.data) // Set fetched data into state
+        setLoading(false); // Stop loading once data is fetched
       })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+        setError("Failed to fetch products."); // Handle error
+        setLoading(false);
       });
   }, []);
 
+  // Display loading message while fetching data
+  if (loading) {
+    return <p className="text-center text-lg">Loading products...</p>;
+  }
+
+  // Display error message if fetching fails
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
+
   return (
-    <div className="container mx-auto p-4">
-      <div className="grid grid-cols-5 gap-4">
-        {products.slice(0, 10).map((product) => (
-          <div
-            key={product.id}
-            className="bg-white p-2 rounded-lg shadow-md hover:shadow-lg transition duration-200 flex flex-col justify-between"
-            style={{ height: '400px' }} // Fixed height for uniformity
-          >
-            {/* Reduced spacing around the image */}
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-48 h-48 object-contain rounded-md mx-auto mb-2" // Margin bottom reduced
-            />
-
-            {/* Reduced margin between product name and price */}
-            <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
-            <p className="text-gray-600 mb-1">${product.price}</p>
-
-            {/* Reduced margin between product description and button */}
-            <button
-              className="mt-1 w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+    <>
+      <Navbar />
+      <div className="p-4">
+        <h1 className="text-2xl font-bold text-center mb-4">Mobile Phones</h1>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {products.map((phone) => (
+            <div
+              key={phone.id}
+              className="border rounded-lg shadow-sm p-3 flex flex-col items-center"
             >
-              Add to Cart
-            </button>
-          </div>
-        ))}
+              {/* Product Image */}
+              <img
+                src={phone.image}
+                alt={phone.name}
+                className="w-24 h-24 object-cover mb-3"
+              />
+              {/* Product Details */}
+              <h2 className="text-base font-semibold text-center">
+                {phone.name}
+              </h2>
+              <p className="text-sm text-gray-500 text-center">{phone.specs}</p>
+              <p className="text-lg font-bold text-orange-500">{phone.price}</p>
+              {/* Add to Cart Button */}
+              <button className="mt-2 bg-orange-500 text-white text-sm px-3 py-1 rounded hover:bg-orange-600">
+                Add to Cart
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
-};
+}
 
-export default ProductList;
+export default Home;

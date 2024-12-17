@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
@@ -9,7 +7,7 @@ const LoginPage = () => {
     <div className="App flex items-center justify-center h-screen w-screen bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500">
       <div className="flex flex-col justify-between items-center py-[50px] w-[350px] h-[500px] bg-slate-300 border shadow-lg rounded-xl">
         <span className="font-serif font-bold text-4xl py-[3px] pb-10">LOGIN</span>
-        <form onSubmit={handleLogin} className="flex flex-col items-center gap-5">
+        <form className="flex flex-col items-center gap-5">
           <div className="flex flex-col w-[250px] ">
             <input
               className="border border-black rounded w-full h-[40px] bg-transparent border-b-2 border-b-gray-400"

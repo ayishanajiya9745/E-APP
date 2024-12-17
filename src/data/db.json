@@ -7,7 +7,7 @@
     { "id": 5, "name": "Huawei Mate 70 Pro Plus", "price": 40, "image": "https://i.gadgets360cdn.com/products/large/mate-70-pro-plus-725x800-1732625652.jpg?downsize=*:180" },
     { "id": 6, "name": "iPhone 15", "price": 45, "image": "https://inventstore.in/wp-content/uploads/2024/07/63.webp" },
     { "id": 7, "name": "Xiaomi 14 Pro", "price": 50, "image": "https://i.gadgets360cdn.com/products/small/poco-c75-240x180-1729929943.jpg?downsize=120:*" },
-    { "id": 8, "name": "Samsung Galaxy Z Fold 6 Special Edition", "price": 55, "image": "https://i.gadgets360cdn.com/products/large/samsung-galaxy-z-fold-6-special-edition-725x800-1729582931.jpg?downsize=*:180" },
+    { "id": 8, "name": "Samsung Galaxy Z Fold 6", "price": 55, "image": "https://i.gadgets360cdn.com/products/large/samsung-galaxy-z-fold-6-special-edition-725x800-1729582931.jpg?downsize=*:180" },
     { "id": 9, "name": "Samsung Galaxy A16 5G", "price": 60, "image": "https://i.gadgets360cdn.com/products/small/galaxy-a16-5g-samsung-db-240x180-1728298269.jpg?downsize=120:*" },
     { "id": 10, "name": "iPhone 14 Pro", "price": 65, "image": "https://img2.gadgetsnow.com/gd/images/products/additional/large/G390824_View_1/mobiles/smartphones/apple-iphone-14-pro-128-gb-deep-purple-6-gb-ram-.jpg" }
   ]
